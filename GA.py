@@ -58,7 +58,7 @@ def studentnumber1_studentnumber2_GA(problem):
         survivors_f = [f[i] for i in survivors_idx]
         X = elites_X + survivors_X
         f = elites_f + survivors_f
-    print(f[np.argmax(f)])
+    print(f"Best final fitness: {max(f)}")
 
 
 

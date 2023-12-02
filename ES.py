@@ -71,11 +71,11 @@ def studentnumber1_studentnumber2_ES(problem):
         X = [X[i] for i in survivors_idx]
         f = [f[i] for i in survivors_idx]
         sigma = [offspring_sigma[i] for i in survivors_idx]
-        print(f"Problem evaluations examples: {problem.state.evaluations}")
-        print(f"Best fitness: {max(f)}")
+        #print(f"Problem evaluations examples: {problem.state.evaluations}")
+        #print(f"Best fitness: {max(f)}")
         #print(f"Best solution: {X[np.argmax(f)]}")
         #print(f"Best sigma: {sigma[np.argmax(f)]}")
-
+    print(f"Best final fitness: {max(f)}")
 
 def create_problem(fid: int):
     # Declaration of problems to be tested.
