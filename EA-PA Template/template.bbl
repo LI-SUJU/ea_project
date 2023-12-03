@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{ye2019interpolating}
+Furong Ye, Carola Doerr, and Thomas B{\"a}ck.
+\newblock Interpolating local and global search by controlling the variance of standard bit mutation.
+\newblock In {\em 2019 IEEE Congress on Evolutionary Computation (CEC)}, pages 2292--2299. IEEE, 2019.
+
+\bibitem{hadash2018estimate}
+Guy Hadash, Einat Kermany, Boaz Carmeli, Ofer Lavi, George Kour, and Alon Jacovi.
+\newblock Estimate and replace: A novel approach to integrating deep neural networks with existing applications.
+\newblock {\em arXiv preprint arXiv:1804.09028}, 2018.
+
+\end{thebibliography}

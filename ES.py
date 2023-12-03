@@ -6,7 +6,7 @@ from ioh import get_problem, logger, ProblemClass
 
 from ga_functions import initialize_population
 
-budget = 5000
+budget = 500000
 dimension = 50
 
 sigma_init = 0.5
