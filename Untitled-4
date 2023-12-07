@@ -1,0 +1,105 @@
+fiarresga@Ricardos-MBP-2 ea_project % 
+fiarresga@Ricardos-MBP-2 ea_project % /usr/local/bin/python3 /Users/fiarresga/Desktop/2024/EA/ea_project/es_optimize.py
+2.772 3.117 0.4496420749944241 104 154
+2.791 3.316 0.808773002812437 79 4
+2.743 3.541 0.7273599597255413 78 68
+3.097 4.209 0.5300454177715808 9 183
+2.735 3.056 0.5967938333471573 193 178
+2.695 2.887 0.9920077265984832 192 30
+2.763 3.247 0.205332112904775 143 28
+2.746 3.623 0.8962911577799518 175 146
+2.909 3.709 0.12784759787005737 59 130
+2.808 3.247 0.9871195474415753 109 52
+2.817 3.541 0.49983531822672167 14 173
+3.025 3.994 0.6059358722350741 6 188
+3.537 4.325 0.8168582996289631 8 5
+2.763 3.316 0.31780190066152286 66 161
+3.866 4.864 0.17337191986279968 8 19
+3.332 4.098 0.0650793518042126 53 168
+3.703 4.448 0.22049736119039806 2 8
+3.813 5.76 0.01 6 3
+3.562 4.209 0.012351409629218966 5 10
+3.651 4.717 0.9774309282736314 2 9
+3.508 4.448 0.01 2 3
+2.776 3.388 0.5308551056764453 32 3
+3.326 4.448 0.8946126004020157 2 199
+3.283 4.579 0.6813901404700045 2 195
+3.237 4.325 0.9691721843465194 2 177
+2.083 3.056 0.012279137793544217 2 123
+2.855 3.463 0.928855106827043 146 200
+2.708 3.463 0.5218289075502358 37 200
+2.836 3.388 0.8973239559570473 38 88
+2.796 3.316 0.1442025913770494 147 117
+3.779 4.864 0.17710008549836873 2 53
+3.657 4.579 0.13087428304254012 2 12
+2.713 3.117 0.9339993424608968 200 7
+3.588 4.325 0.7022423638554931 2 3
+3.541 4.325 0.2692733663915201 2 196
+3.642 4.209 0.6494800592010215 2 3
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.541 4.325 0.2692733663915201 2 196
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.642 4.209 0.6494800592010215 2 3
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.541 4.325 0.2692733663915201 2 196
+2.809 3.623 0.9452244000268193 200 180
+3.475 4.448 0.20830114286513632 14 48
+2.93 3.799 0.01 2 38
+3.691 4.717 1.0 2 3
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.541 4.325 0.2692733663915201 2 196
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.642 4.209 0.6494800592010215 2 3
+2.707 3.117 0.36775872586453473 200 101
+2.769 3.247 0.1598492056890561 89 200
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.691 4.717 1.0 2 3
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.541 4.325 0.2692733663915201 2 196
+2.832 3.388 0.3970891166011772 37 3
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn("The objective has been evaluated "
+3.691 4.717 1.0 2 3
+2.704 3.709 0.4440843518595649 164 3
+3.664 4.864 0.10781344353803912 7 3
+3.563 4.717 1.0 8 3
+3.421 4.325 0.439475435304409 2 56
+3.817 4.864 0.09578066885663056 13 3
+2.736 3.181 0.01 26 3
+3.514 4.448 0.07702881902104924 58 3
+2.967 3.799 0.0781693032614006 125 200
+2.835 3.388 0.39538372939667976 165 200
+3.058 4.098 0.9913954867655128 10 25
+3.604 4.448 0.9832297343489161 8 3
+3.633 4.579 0.8422699245401093 8 3
+3.633 4.579 0.8422761772898456 8 3
+3.807 5.365 0.28378907894785377 10 3
+^CTraceback (most recent call last):
+  File "/Users/fiarresga/Desktop/2024/EA/ea_project/es_optimize.py", line 176, in <module>
+    result = gp_minimize(
+             ^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/gp.py", line 259, in gp_minimize
+    return base_minimize(
+           ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/skopt/optimizer/base.py", line 299, in base_minimize
+    next_y = func(next_x)
+             ^^^^^^^^^^^^
+  File "/Users/fiarresga/Desktop/2024/EA/ea_project/es_optimize.py", line 148, in optimize
+    v = studentnumber1_studentnumber2_ES(F18, mu_=mu_, lambda_=lambda_, sigma_init=sigma_init, tau=tau)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/fiarresga/Desktop/2024/EA/ea_project/es_optimize.py", line 93, in studentnumber1_studentnumber2_ES
+    o, os = mutation(offspring[i], offspring_sigma[i], global_perturbation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/fiarresga/Desktop/2024/EA/ea_project/es_optimize.py", line 56, in mutation
+    new_offspring[i] = x + np.random.normal(0, new_offspring_sigma[i])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+fiarresga@Ricardos-MBP-2 ea_project % 

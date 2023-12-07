@@ -22,12 +22,34 @@ def crossover(p1, p2, crossover_rate):
 
     return off1, off2
 
+"""# Uniform Crossover
+def crossover(p1, p2, crossover_rate):
+   #if(np.random.uniform(0,1) < crossover_rate):
+    for i in range(len(p1)) :
+        #if np.random.uniform(0,1) < 0.5:
+        if np.random.uniform(0,1) < crossover_rate:
+            t = p1[i].copy()
+            p1[i] = p2[i]
+            p2[i] = t
+
+    return p1, p2 """
+
 # Standard bit mutation using mutation rate p
-def mutation(p, mutation_rate):
+"""def mutation(p, mutation_rate):
     for i in range(len(p)) :
         if np.random.uniform(0,1) < mutation_rate:
             p[i] = 1 - p[i]
+    return p"""
+
+#Boundary Mutation
+def mutation(p, mutation_rate, generation):
+    current_mutation_rate = mutation_rate * (1 - generation / 10000)
+
+    for i in range(len(p)) :
+        if np.random.uniform(0,1) < current_mutation_rate:
+            p[i] = 1 - p[i]
     return p
+
 
 # Roulette wheel selection
 def mating_seletion(parent, parent_f):

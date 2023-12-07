@@ -4,13 +4,24 @@ import numpy as np
 # https://pypi.org/project/ioh/
 from ioh import get_problem, logger, ProblemClass
 
+#Bayesian
+from skopt import BayesSearchCV
+
 from ga_functions import initialize_population, crossover, mutation, mating_seletion
+
+"""
+
+population_size = 50
+num_elitism = 10
+mutation_rate = 0.015
+crossover_rate = 0.75
+"""
 
 budget = 5000
 dimension = 50
 
 # Make the experiments reproducible
-np.random.seed(0)
+
 
 def studentnumber1_studentnumber2_GA(problem, population_size, num_elitism, mutation_rate, crossover_rate):
     # Initialize the population
@@ -36,6 +47,7 @@ def studentnumber1_studentnumber2_GA(problem, population_size, num_elitism, muta
         # Crossover
         offspring = parents.copy()
 
+        #for i in range(0, population_size - (population_size%2), 2):
         for i in range(0, population_size - (population_size%2), 2):
             child1, child2 = crossover(parents[i], parents[i+1], crossover_rate)
             offspring[i] = child1
@@ -64,7 +76,10 @@ def studentnumber1_studentnumber2_GA(problem, population_size, num_elitism, muta
         survivors_f = [f[i] for i in survivors_idx]
         X = elites_X + survivors_X
         f = elites_f + survivors_f
-    print(f"Best final fitness: {max(f)}")
+    #print(f"Best final fitness: {max(f)}")
+    return max(f)
+
+
 
 
 
@@ -86,17 +101,89 @@ def create_problem(fid: int):
     return problem, l
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     # this how you run your algorithm with 20 repetitions/independent run
     F18, _logger = create_problem(18)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F18, 4, 1, 0.06980201831374439, 0.95)
+        studentnumber1_studentnumber2_GA(F18)
         F18.reset() # it is necessary to reset the problem after each independent run
     _logger.close() # after all runs, it is necessary to close the logger to make sure all data are written to the folder
 
-    np.random.seed(0)
     F19, _logger = create_problem(19)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F19, 2, 1, 0.049524893651331885, 0.98)
+        studentnumber1_studentnumber2_GA(F19)
         F19.reset()
-    _logger.close()
+    _logger.close()"""
+
+
+"""def optimize(params):
+    F18, _logger = create_problem(18)
+    values = []
+    np.random.seed(params[4])
+    for run in range(20): 
+        #value = studentnumber1_studentnumber2_GA(F18, params[0], params[1], params[2], params[3])
+        value = studentnumber1_studentnumber2_GA(F18, params[0], params[1], params[2], 0)
+        values.append(value)
+        F18.reset() # it is necessary to reset the problem after each independent run
+    _logger.close() # after all runs, it is necessary to close the logger to make sure all data are written to the folder
+
+    result = np.mean(np.array(values))
+    
+    print(np.round(result,3), np.round(max(values), 3), params[0], params[1], params[2], params[3])
+    
+    #print(np.round(result,3), np.round(max(values), 3), params[0], params[1], params[2],0)
+    with open('ga_1p.csv', 'a') as file:
+        file.write(f'{np.round(result,3)}, {np.round(max(values), 3)},{ params[0]}, {params[1]}, {params[2]}, {params[3]}, {params[4]}; \n')
+
+    
+    
+    return 1/result
+    #return 1/max(values)"""
+
+def optimize(params):
+    F19, _logger = create_problem(19)
+    values = []
+    np.random.seed(0)
+    for run in range(20): 
+        value = studentnumber1_studentnumber2_GA(F19, params[0], params[1], params[2], params[3])
+
+        values.append(value)
+        F19.reset() # it is necessary to reset the problem after each independent run
+    _logger.close() # after all runs, it is necessary to close the logger to make sure all data are written to the folder
+
+    result = np.mean(np.array(values))
+    
+    print(np.round(result,3), np.round(max(values), 3), params[0], params[1], params[2], params[3])
+    
+    if result >= 47.8:
+        with open('ga_new_19p.csv', 'a') as file:
+            file.write(f'{np.round(result,3)}, {np.round(max(values), 3)}, {params[0]}, {params[1]}, {params[2]}, {params[3]}; \n')
+
+    
+    
+    return 1/result
+    #return 1/max(values)
+
+    
+
+from skopt.space import Real, Integer
+
+
+param_space = [
+    Integer(2, 3, name='population_size'),
+    Integer(1, 2, name='num_elitism'),
+    Real(0.001, 0.1, name='mutation_rate'),
+    Real(0.5, 0.98, name='crossover_rate'),
+]
+
+from skopt import gp_minimize
+
+result = gp_minimize(
+    optimize,  # Your objective function
+    param_space,
+    n_calls=300,  # Number of optimization iterations
+    n_random_starts=5,
+    random_state=0,  # Set a random seed for reproducibility
+    n_jobs=-1
+)
+
