@@ -3,16 +3,27 @@ import numpy as np
 # https://iohprofiler.github.io/IOHexp/ and
 # https://pypi.org/project/ioh/
 from ioh import get_problem, logger, ProblemClass
+import ioh
 
 from ga_functions import initialize_population, crossover, mutation, mating_seletion
 
 budget = 5000
 dimension = 50
 
-# Make the experiments reproducible
-np.random.seed(0)
+def studentnumber1_studentnumber2_GA(problem):
 
-def studentnumber1_studentnumber2_GA(problem, population_size, num_elitism, mutation_rate, crossover_rate):
+    if isinstance(problem, ioh.iohcpp.problem.LABS):
+        population_size = 4
+        num_elitism = 1
+        mutation_rate = 0.06980201831374439
+        crossover_rate = 0.95
+
+    elif isinstance(problem, ioh.iohcpp.problem.IsingRing):
+        population_size = 2
+        num_elitism = 1
+        mutation_rate = 0.049524893651331885
+        crossover_rate = 0.98
+
     # Initialize the population
     initial_pop = initialize_population((population_size), dimension)
     X = [x for x in initial_pop]
@@ -88,15 +99,16 @@ def create_problem(fid: int):
 
 if __name__ == "__main__":
     # this how you run your algorithm with 20 repetitions/independent run
+    np.random.seed(0)
     F18, _logger = create_problem(18)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F18, 4, 1, 0.06980201831374439, 0.95)
+        studentnumber1_studentnumber2_GA(F18)
         F18.reset() # it is necessary to reset the problem after each independent run
     _logger.close() # after all runs, it is necessary to close the logger to make sure all data are written to the folder
 
     np.random.seed(0)
     F19, _logger = create_problem(19)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F19, 2, 1, 0.049524893651331885, 0.98)
+        studentnumber1_studentnumber2_GA(F19)
         F19.reset()
     _logger.close()

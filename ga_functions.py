@@ -41,7 +41,7 @@ def crossover(p1, p2, crossover_rate):
             p[i] = 1 - p[i]
     return p"""
 
-#Boundary Mutation
+#Non-Uniform Mutation
 def mutation(p, mutation_rate, generation):
     current_mutation_rate = mutation_rate * (1 - generation / 10000)
 
