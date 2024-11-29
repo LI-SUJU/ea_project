@@ -5,24 +5,91 @@ import numpy as np
 from ioh import get_problem, logger, ProblemClass
 import ioh
 
-from ga_functions import initialize_population, crossover, mutation, mating_seletion
 
-budget = 5000
-dimension = 50
+# Initialize population with random binary strings
+def initialize_population(n, dimension):
+    population = [np.random.randint(0,2,dimension) for i in range(n)]
+    return population
 
-def studentnumber1_studentnumber2_GA(problem):
+# One point crossover
+def crossover(p1, p2, crossover_rate):
+    # Check if crossover should be performed
+    if crossover_rate <= np.random.uniform(0,1):
+        return p1, p2
+    
+    size = len(p1)
+    point1 = np.random.randint(0,size)
 
-    if isinstance(problem, ioh.iohcpp.problem.LABS):
-        population_size = 4
-        num_elitism = 1
-        mutation_rate = 0.06980201831374439
-        crossover_rate = 0.95
+    off1 = p1.copy()
+    off2 = p2.copy()
 
-    elif isinstance(problem, ioh.iohcpp.problem.IsingRing):
-        population_size = 2
-        num_elitism = 1
-        mutation_rate = 0.049524893651331885
-        crossover_rate = 0.98
+    off1[point1:] = p2[point1:]
+    off2[point1:] = p1[point1:]
+
+    return off1, off2
+
+"""# Uniform Crossover
+def crossover(p1, p2, crossover_rate):
+   #if(np.random.uniform(0,1) < crossover_rate):
+    for i in range(len(p1)) :
+        #if np.random.uniform(0,1) < 0.5:
+        if np.random.uniform(0,1) < crossover_rate:
+            t = p1[i].copy()
+            p1[i] = p2[i]
+            p2[i] = t
+
+    return p1, p2 """
+
+# Standard bit mutation using mutation rate p
+"""def mutation(p, mutation_rate):
+    for i in range(len(p)) :
+        if np.random.uniform(0,1) < mutation_rate:
+            p[i] = 1 - p[i]
+    return p"""
+
+#Non-Uniform Mutation
+def mutation(p, mutation_rate, generation):
+    current_mutation_rate = mutation_rate * (1 - generation / 10000)
+
+    for i in range(len(p)) :
+        if np.random.uniform(0,1) < current_mutation_rate:
+            p[i] = 1 - p[i]
+    return p
+
+
+# Roulette wheel selection
+def mating_seletion(parent, parent_f):
+
+    # Normalize fitness values
+    f_normalized = [f - min(parent_f) + 0.001 for f in parent_f]
+    f_sum = sum(f_normalized) 
+    f_normalized = [f / f_sum for f in f_normalized]
+
+    # Cumulative roulette wheel values
+    rw = [f_normalized[0]]
+    for i in range(1,len(parent_f)):
+        rw.append(rw[i-1] + f_normalized[i])
+    
+    # Sort parents using roulette wheel values
+    select_parent = []
+    for i in range(len(parent)) :
+        r = np.random.uniform(0,1)
+        index = 0
+        while(r > rw[index]) :
+            index = index + 1
+        
+        select_parent.append(parent[index].copy())
+    return select_parent
+
+# budget = 5000
+# dimension = 50
+
+def studentnumber1_studentnumber2_GA(problem, dimension=50, budget=5000, population_size=100, mutation_rate=0.049524893651331885, crossover_rate=0.98, num_elitism=1):
+
+    # population_size = 100
+    # num_elitism = 1
+    # mutation_rate = 0.049524893651331885
+    # crossover_rate = 0.98
 
     # Initialize the population
     initial_pop = initialize_population((population_size), dimension)
@@ -77,38 +144,43 @@ def studentnumber1_studentnumber2_GA(problem):
         f = elites_f + survivors_f
     print(f"Best final fitness: {max(f)}")
 
+    return max(f)
 
 
-def create_problem(fid: int):
+
+def create_problem(fid: int, dimension: int):
     # Declaration of problems to be tested.
     problem = get_problem(fid, dimension=dimension, instance=1, problem_class=ProblemClass.PBO)
 
     # Create default logger compatible with IOHanalyzer
     # `root` indicates where the output files are stored.
     # `folder_name` is the name of the folder containing all output. You should compress the folder 'run' and upload it to IOHanalyzer.
-    l = logger.Analyzer(
-        root="data",  # the working directory in which a folder named `folder_name` (the next argument) will be created to store data
-        folder_name="run",  # the folder name to which the raw performance data will be stored
-        algorithm_name="genetic_algorithm",  # name of your algorithm
-        algorithm_info="Practical assignment of the EA course",
-    )
-    # attach the logger to the problem
-    problem.attach_logger(l)
-    return problem, l
+    # l = logger.Analyzer(
+    #     root="data",  # the working directory in which a folder named `folder_name` (the next argument) will be created to store data
+    #     folder_name="run",  # the folder name to which the raw performance data will be stored
+    #     algorithm_name="genetic_algorithm",  # name of your algorithm
+    #     algorithm_info="Practical assignment of the EA course",
+    # )
+    # # attach the logger to the problem
+    # problem.attach_logger(l)
+    # return problem, l
+    return problem
 
 
 if __name__ == "__main__":
     # this how you run your algorithm with 20 repetitions/independent run
     np.random.seed(0)
-    F18, _logger = create_problem(18)
+    F18, _logger = create_problem(18, 50)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F18)
+        print(f"Run {run}")
+        studentnumber1_studentnumber2_GA(F18, 50)
         F18.reset() # it is necessary to reset the problem after each independent run
     _logger.close() # after all runs, it is necessary to close the logger to make sure all data are written to the folder
 
     np.random.seed(0)
-    F19, _logger = create_problem(19)
+    F23, _logger = create_problem(23, 49)
     for run in range(20): 
-        studentnumber1_studentnumber2_GA(F19)
-        F19.reset()
+        print(f"Run {run}")
+        studentnumber1_studentnumber2_GA(F23, 49)
+        F23.reset()
     _logger.close()

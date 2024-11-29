@@ -1,0 +1,1 @@
+{'population_size': 57, 'mutation_rate': 0.01, 'crossover_rate': 0.6}
